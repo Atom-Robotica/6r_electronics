@@ -1,11 +1,12 @@
-#ifndef StepperControl
-#define StepperControl
+#ifndef STEPPERCONTROL_H
+#define STEPPERCONTROL_H
 
 #include "Arduino.h"
 
 class StepperControl    {
     int angle;
     char dir;
+    int del;
     int serialData;         //Data recieved from serial input.
     int serialPort;         //Serial port used.(0 by default in case of Arduino Uno, more than 1 in case of Mega)
     int precision[8][4];    //Precision is set as 0.6 degree/step. Default of motor is 1.8 degree/step
@@ -14,14 +15,16 @@ class StepperControl    {
     int coil2P;             //Digital pin on board to energize coil 2 positive
     int coil2N;             //Digital pin on board to energize coil 2 negative
     int getSerial();        //Private function to decode serial data recieved
+    int delay();
     public:
 
-    StepperControl();
+    StepperControl(int coil1P, int coil1N, int coil2P, int coil2N);
     //StepperControl(int angle);
-    void getAngle();
-    void rotateClockwise(int serialData = 360; int coil1P, int coil1N, int coil2P, int coil2N);
-    void rotateAnticlockwise(int serialData = 360, int coil1P, int coil1N, int coil2P, int coil2N);
-    void rotate(char dir, int serialPort = 0, int coil1P = 4, int coil1N = 5, int coil2P = 6, int coil2N = 7);
-    void rotateToAngle(int serialData, int coil1P = 4, int coil1N = 5, int coil2P = 6, int coil2N = 7)
+    int getAngle(int angle);
+    void rotateClockwise(int serialData = 360);
+    void rotateAnticlockwise(int serialData = 360);
+    void rotate(char dir, int serialPort = 0);
+    void rotateToAngle(int serialData = 0);
 };
+
 #endif

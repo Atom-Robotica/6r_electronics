@@ -17,7 +17,7 @@ int StepperControl :: getAngle(int angle)  {
     
 }
 
-void StepperControl :: rotateClockwise(int angle, int coil1P, int coil1N, int coil2P, int coil2N)  {
+void StepperControl :: rotateClockwise(int coil1P, int coil1N, int coil2P, int coil2N, int serialData)  {
     int j = 0;
     final_angle = angle/0.6;
     for(int i=0; i<final_angle; i++) {
@@ -29,7 +29,7 @@ void StepperControl :: rotateClockwise(int angle, int coil1P, int coil1N, int co
     }
 }
 
-void StepperControl :: rotateAnticlockwise(int serialData, int coil1P, int coil1N, int coil2P, int coil2N)  {
+void StepperControl :: rotateAnticlockwise(int coil1P, int coil1N, int coil2P, int coil2N, int serialData)  {
     int j = 0;
     final_angle = serialData/0.6;
     for(int i=0; i<final_angle; i++) {
@@ -42,8 +42,8 @@ void StepperControl :: rotateAnticlockwise(int serialData, int coil1P, int coil1
 }
 
 void StepperControl :: rotate(char dir, int serialPort, int coil1P, int coil1N, int coil2P , int coil2N ) {
-    if(dir == 'c')   rotateClockwise(int serialData, int coil1P, int coil1N, int coil2P, int coil2N);
-    else if(dir == 'a')  rotateAnticlockwise(int serialData, int coil1P, int coil1N, int coil2P, int coil2N);
+    if(dir == 'c')   rotateClockwise(int coil1P, int coil1N, int coil2P, int coil2N, int serialData);
+    else if(dir == 'a')  rotateAnticlockwise(int coil1P, int coil1N, int coil2P, int coil2N, int serialData);
     else System.println("Enter 'a' or 'c'");
 }
 

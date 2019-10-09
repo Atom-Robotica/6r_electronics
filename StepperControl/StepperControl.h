@@ -19,9 +19,10 @@ class StepperControl    {
     StepperControl();
     //StepperControl(int angle);
     void getAngle();
-    void rotateClockwise(int serialData = 360; int coil1P, int coil1N, int coil2P, int coil2N);
-    void rotateAnticlockwise(int serialData = 360, int coil1P, int coil1N, int coil2P, int coil2N);
+    void rotateClockwise(int coil1P, int coil1N, int coil2P, int coil2N, int serialData = 360);
+    void rotateAnticlockwise(int coil1P, int coil1N, int coil2P, int coil2N, int serialData = 360);
     void rotate(char dir, int serialPort = 0, int coil1P = 4, int coil1N = 5, int coil2P = 6, int coil2N = 7);
-    void rotateToAngle(int serialData, int coil1P = 4, int coil1N = 5, int coil2P = 6, int coil2N = 7)
+    void rotateToAngle(int serialData, int coil1P = 4, int coil1N = 5, int coil2P = 6, int coil2N = 7);
 };
+
 #endif

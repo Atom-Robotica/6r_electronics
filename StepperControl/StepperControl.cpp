@@ -78,8 +78,26 @@ void StepperControl :: rotate(char dir, int serialPort) {
 }
 
 void StepperControl :: rotateToAngle(int delay, int serialData, int X, int Y)    {
-    if(serialData>getAngle(X, Y))   
+    int a = getAngle(X, Y);
+    int diff = serialData - a;
+    if((diff<=180) && (diff>=0))    
+        rotateClockwise(int delay, abs(diff));;
+    
+    else if(diff>180)   
+        rotateAnticlockwise(int delay, abs(diff));
+    
+    else if(diff<=-180)
+        rotateAnticlockwise(int delay, abs(diff));
+    
+    else if((diff>-180) && (diff<=0))
+        rotateClockwise(int delay, abs(diff));
+    
+    /*
+    if(serialData>getAngle(X, Y))   {
+
         rotateClockwise(int delay, abs(serialData-getAngle(X, Y)));
+    }
     else if(erialData<getAngle(X, Y))
         rotateAnticlockwise(int delay, abs(serialData-getAngle(X, Y));
+    */
 }
